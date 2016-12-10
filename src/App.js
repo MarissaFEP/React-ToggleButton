@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './App.css';
 import ToggleButton from './ToggleButton'
+import MessageBoard from './MessageBoard'
 
-class App extends Component {
+const WELCOME = (<MessageBoard message='welcome'/>);
+const GOODBYE = (<MessageBoard message='goodbye'/>);
+
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,9 +19,12 @@ class App extends Component {
   };
 
   render() {
+    const {isLogin} = this.state;
+
     return (
       <div className="App">
-        <ToggleButton isOn={this.state.isLogin} onText='Login' offText='Logout' onToggle={this.handleLogState}/>
+        <ToggleButton isOn={isLogin} onMessage='Login' offMessage='Logout' onToggle={this.handleLogState}/>
+        {isLogin ? WELCOME : GOODBYE}
      </div>
     );
   }

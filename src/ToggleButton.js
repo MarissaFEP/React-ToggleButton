@@ -1,10 +1,10 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, PureComponent} from 'react';
 
-export default class ToggleButton extends React.Component {
+export default class ToggleButton extends PureComponent {
     static propTypes = {
         isOn: PropTypes.bool.isRequired,
-        onText: PropTypes.string.isRequired,
-        offText: PropTypes.string.isRequired,
+        onMessage: PropTypes.any.isRequired,
+        offMessage: PropTypes.any.isRequired,
         onToggle: PropTypes.func.isRequired
     };
    
@@ -14,11 +14,11 @@ export default class ToggleButton extends React.Component {
     }
 
     render() {
-        const {isOn, onText, offText} = this.props;
+        const {isOn, onMessage, offMessage} = this.props;
 
         return (
             <div>
-                <button onClick={this.handleClick}>{isOn ? offText : onText}</button>
+                <button onClick={this.handleClick}>{isOn ? offMessage : onMessage}</button>
             </div> 
         );
     }
